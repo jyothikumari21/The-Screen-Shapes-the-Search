@@ -1,55 +1,77 @@
 # The Screen Shapes the Search
 
-**An independent human-centred clickstream analytics portfolio project by Jyothi Kumari.**
+**An independent human-centred clickstream analytics and UX portfolio project by Jyothi Kumari.**
 
-Explore what online shopping click records reveal about observed navigation, and what they do not reveal about why people click. An interactive Streamlit app links Maya, a fictional character based on anonymous session 18817, to the broader historical dataset.
+**A question:** When someone shops online, what can recorded clicks tell us about their journey through a designed screen — and what stays invisible?
 
-## Questions
+This repository turns the original storyboard into a reproducible, public GitHub Pages data story. **No Streamlit account or server is needed.** Python is run by GitHub Actions, and a static website displays the results.
 
-- Where were clicked products positioned on the page?
-- How does the observed distribution vary across months and categories?
-- How can we explore individual anonymous click sequences without inferring motivation?
-- What further UX research would help improve product discovery?
+## 🌐 Project website
 
-## Data and attribution
+After GitHub Pages has been enabled, the website will be published at:
 
-[UCI Clickstream Data for Online Shopping](https://archive.ics.uci.edu/dataset/553/clickstream+data+for+online+shopping), DOI [10.24432/C5QK7X](https://doi.org/10.24432/C5QK7X); originally recorded in April–August 2008 at a maternity-clothing store, made available by UCI in 2019. Dataset credit: UCI Machine Learning Repository (CC BY 4.0). The original data is downloaded from UCI on first run and cached locally; it is not committed to the repository.
+https://jyothikumari21.github.io/The-Screen-Shapes-the-Search/
 
-## Run
+The URL above is the intended address, **not yet confirmed as deployed**.
+
+## The project in five steps
+
+1. **Data:** `src/data.py` downloads the real [UCI Clickstream Data for Online Shopping](https://archive.ics.uci.edu/dataset/553/clickstream+data+for+online+shopping) dataset.
+2. **Analysis:** `src/analysis.py` computes observed click distributions and anonymous session sequences.
+3. **Prepare website data:** `scripts/build_site_data.py` writes small aggregate summaries (JSON) from the original records.
+4. **Presentation:** `docs/index.html`, `docs/style.css` and `docs/site.js` present Maya's story and interactive charts.
+5. **Publish:** `.github/workflows/pages.yml` runs the Python analysis and publishes the website using GitHub Actions + GitHub Pages.
+
+Raw data is **not** uploaded to this repository. When the publishing workflow runs, its temporary build environment downloads the source and generates the chart data. No synthetic counts are shown as real findings.
+
+## Publish using GitHub only — one-time settings
+
+1. Open your repository's **Settings** tab.
+2. Select **Pages** from the left sidebar.
+3. Under **Build and deployment → Source**, select **GitHub Actions**.
+4. Open the repository's **Actions** tab, select **Build and publish GitHub Pages story**, then click **Run workflow → Run workflow** (only if deployment did not run automatically).
+5. Check whether the workflow completes successfully; if it fails, read the failed step's logs. Do not assume the data was fetched.
+6. Return to **Settings → Pages** for the actual published URL.
+
+[Learn more: GitHub Pages publishing settings](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
+
+## How to inspect the project
+
+| File | Meaning |
+|---|---|
+| `notebooks/01_understanding_the_data.ipynb` | Beginner-friendly walkthrough of the variables and core exploration |
+| `src/data.py` | Retrieve and validate the genuine source CSV |
+| `src/analysis.py` | Convert click records to descriptive summaries |
+| `scripts/build_site_data.py` | Prepare aggregate JSON for the website |
+| `docs/index.html` | The story's text and structure |
+| `docs/style.css` | The website's visual design |
+| `docs/site.js` | Loads the JSON and updates charts when filters change |
+| `.github/workflows/pages.yml` | Automates build and publication |
+| `docs/METHODOLOGY.md` | Data limitations and decisions |
+| `docs/ROADMAP.md` | Improvements still to complete |
+
+See [HOW_IT_WORKS.md](docs/HOW_IT_WORKS.md) for a line-by-line learning path.
+
+## Source and research limitations
+
+**Dataset:** *Clickstream Data for Online Shopping*, UCI Machine Learning Repository (2019), DOI [10.24432/C5QK7X](https://doi.org/10.24432/C5QK7X), licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+The dataset records 165,474 product clicks from one maternity-clothing e-commerce store in April–August 2008. Session 18817 is used as the basis for Maya's fictional narrative. Maya is **not an identifiable person**.
+
+Click share is **not** click-through rate: the dataset does not include a complete record of product impressions, ignored products, user intent, purchases, or causal evidence about placement. See [methodology](docs/METHODOLOGY.md).
+
+## Check the code
+
+If you also have Python on your computer, you can run:
 
 ```bash
-python -m venv .venv
-# Windows: .venv\Scripts\activate
-# macOS or Linux: source .venv/bin/activate
-pip install -r requirements.txt
-streamlit run app.py
-```
-
-Requires Python 3.10+ and an internet connection for the initial data download. If UCI is unreachable the app reports the error; it never silently uses synthetic records as research evidence.
-
-## Test
-
-```bash
+python -m pip install -r requirements.txt
 python -m pytest -q
+python -m scripts.build_site_data
 ```
 
-## Repository structure
-
-- `app.py`: interactive storytelling and charts
-- `src/data.py`: original-data loader and labels
-- `src/analysis.py`: descriptive statistics
-- `tests/`: deterministic unit tests
-- `docs/METHODOLOGY.md`: interpretive rules and limitations
-- `docs/ROADMAP.md`: next steps
-
-## Important limitation
-
-Recorded clicks are **not** impressions. Screen-position counts cannot establish click-through rates or the causal effect of product placement. We do not observe products shown but not clicked, motivations, conversion or sales. This is a historical, one-store dataset, not a representation of current e-commerce behaviour.
-
-## Publish
-
-Push this repository to GitHub, then create a Streamlit Community Cloud app with repository `jyothikumari21/The-Screen-Shapes-the-Search`, branch `main`, entry point `app.py`. Deployment requires the data source to be reachable.
+Local execution is optional; GitHub Actions does the data build for the deployed website.
 
 ## Project origins
 
-The project builds on Jyothi Kumari's original storyboard and three design iterations. Canva and FigJam were used for those sketches; ChatGPT, Gemini and Claude supported ideation. This repository is an independent technical portfolio project, not the university assignment.
+The project expands Jyothi's original story, *The Screen Shapes the Search*, with an independent implementation. Canva and FigJam were used in storyboard drafts, and ChatGPT, Gemini and Claude supported ideation. This is a portfolio project, **not an assignment submission**.
