@@ -36,7 +36,7 @@ jobs:
       - name: Install analysis dependencies
         run: python -m pip install -r requirements.txt
       - name: Generate real-data summaries from the official UCI dataset
-        run: python scripts/build_site_data.py
+        run: python -m scripts.build_site_data
       - name: Upload the static website and generated data
         uses: actions/upload-pages-artifact@v3
         with:
