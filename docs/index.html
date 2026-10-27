@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7f4ef">
+  <meta name="description" content="A human-centred exploration of clickstream data, screen positions and online shopping.">
+  <title>The Screen Shapes the Search · Clickstream & UX</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip">Skip to content</a>
+  <header class="topbar">
+    <a href="#top" class="brand"><span class="logo">S<span>↗</span></span><span>THE SCREEN SHAPES THE SEARCH</span></a>
+    <nav aria-label="Main navigation"><a href="#journey">The journey</a><a href="#explore">Explore data</a><a href="#methods">Methods</a><a href="https://github.com/jyothikumari21/The-Screen-Shapes-the-Search">GitHub ↗</a></nav>
+  </header>
+  <main id="main">
+    <section id="top" class="hero section">
+      <div class="eyebrow"><span class="dot"></span> AN INTERACTIVE DATA STORY · 2008 CLICKSTREAM RECORDS</div>
+      <div class="hero-grid">
+        <div>
+          <h1>The screen<br><em>shapes</em> the search<span class="period">.</span></h1>
+          <p class="lead">A product catches our eye. We click. But what happens when an everyday shopping journey becomes a trail of data?</p>
+          <div class="hero-actions"><a class="primary" href="#journey">Follow Maya's journey <span>↘</span></a><a class="quiet" href="#explore">Explore the data ↗</a></div>
+          <p class="small dim">A human-centred clickstream project by Jyothi Kumari · UCI Machine Learning Repository</p>
+        </div>
+        <div class="hero-graphic" aria-label="Stylized shopping screen with six product positions">
+          <div class="fake-browser"><div class="fake-top"><span>● ● ●</span><span>STORE / COLLECTION</span><span>⌕</span></div>
+          <div class="product-grid">
+            <div class="product p1"><div class="shape dress"></div><small>01</small></div>
+            <div class="product p2"><div class="shape bag"></div><small>02</small></div>
+            <div class="product p3"><div class="shape shirt"></div><small>03</small></div>
+            <div class="product p4"><div class="shape shoe"></div><small>04</small></div>
+            <div class="product p5"><div class="shape dress"></div><small>05</small></div>
+            <div class="product p6"><div class="shape bag"></div><small>06</small></div>
+          </div></div><div class="cursor" aria-hidden="true">↖</div><div class="handnote">One screen.<br>Many stories.</div>
+        </div>
+      </div>
+      <div class="scrollcue">SCROLL TO FOLLOW THE STORY <span>↓</span></div>
+    </section>
+    <section id="journey" class="section chapter">
+      <div class="section-tag">CHAPTER 01 / THE HUMAN</div>
+      <h2>Meet <em>Maya.</em></h2>
+      <div class="split"><div><p class="bodybig">Maya opens an online clothing store. She browses. She compares. She clicks.</p><p>Her name and perspective are part of our storytelling. Her click sequence comes from a real anonymous session, <strong>18817</strong>, in the historical dataset.</p><p class="note">We cannot know her thoughts, all the items she saw, or whether she purchased anything.</p></div>
+      <div class="story-card"><div class="story-icon" aria-hidden="true">◌</div><p class="card-kicker">THE SHOPPING JOURNEY</p><h3>From a person's choices to rows in a dataset</h3><p>Every recorded click contains a piece of the interaction — never the whole experience.</p></div></div>
+    </section>
+    <section class="section chapter alt">
+      <div class="section-tag">CHAPTER 02 / THE TRAIL</div>
+      <h2>Six clicks. <em>One session.</em></h2>
+      <p class="intro">The original storyboard followed six recorded interactions. Below, those clicks are reconstructed in the order they were logged.</p>
+      <div id="session-state" class="status" role="status">Loading the official dataset summary…</div>
+      <div id="click-trail" class="trail" aria-label="Recorded click sequence"></div>
+      <p class="small dim">Product codes, click order and prices come from the dataset. This is not a replay of the original website.</p>
+    </section>
+    <section class="section chapter">
+      <div class="section-tag">CHAPTER 03 / TWO VIEWS</div>
+      <h2>One moment. <em>Two perspectives.</em></h2>
+      <div class="two-views">
+        <article><div class="view-tag">WHAT MAYA MIGHT EXPERIENCE</div><h3>The visible store</h3><p>Product pictures, style, colour, placement and price — all interpreted in a moment.</p><div class="preview-box">A designed shopping interface<br><span>what is noticed is unknown</span></div></article>
+        <article><div class="view-tag">WHAT THE DATA ACTUALLY RECORDS</div><h3>The clickstream</h3><p>Session ID, click order, product code, category, colour, screen location and price.</p><div class="code-box"><span>session_id</span> 18817<br><span>order</span> click sequence<br><span>location</span> 1 to 6<br><span>price</span> USD</div></article>
+      </div>
+    </section>
+    <section id="explore" class="section chapter alt">
+      <div class="section-tag">CHAPTER 04 / THE WIDER PATTERN</div><h2>Where did <em>recorded clicks</em> happen?</h2>
+      <p class="intro">Zooming out from one session, we can compare the six positions of products that were clicked. Change the filters to explore the observed data, not inferred attention.</p>
+      <div class="controls"><label for="month">MONTH <select id="month"><option value="all">All months</option></select></label><label for="category">CATEGORY <select id="category"><option value="all">All categories</option></select></label></div>
+      <div class="dashboard">
+        <div class="metrics"><div><span id="n-clicks">—</span><small>RECORDED CLICKS</small></div><div><span id="n-sessions">—</span><small>SESSIONS IN FULL DATASET</small></div><div><span id="n-share">—</span><small>LARGEST POSITION SHARE</small></div></div>
+        <div id="chart-state" class="status" role="status">Preparing real-data chart…</div>
+        <div id="screen-grid" class="screen-grid" aria-label="Share of recorded clicks by screen position"></div>
+        <div id="position-bars" class="bars" aria-label="Screen position click shares"></div>
+      </div>
+      <div class="warning"><strong>Important:</strong> a larger share of recorded clicks does not mean a better placement or a higher click-through rate. The data contains no complete record of product impressions or ignored items.</div>
+    </section>
+    <section id="methods" class="section chapter">
+      <div class="section-tag">CHAPTER 05 / WHAT WE CAN SAY</div><h2>Data can show <em>what happened.</em><br>Not always <em>why.</em></h2>
+      <div class="three"><article><span class="big-num">01</span><h3>We can observe</h3><p>Recorded click counts, product categories, page positions, and the order of clicks within a session.</p></article><article><span class="big-num">02</span><h3>We cannot infer</h3><p>Product exposure, intent, attention, conversion, or a causal effect of position on clicking.</p></article><article><span class="big-num">03</span><h3>What to test next</h3><p>Track product impressions and run carefully controlled interface experiments to understand discoverability.</p></article></div>
+    </section>
+    <section class="section ending">
+      <div class="section-tag">CHAPTER 06 / BACK TO MAYA</div>
+      <h2>Behind every click<br>is <em>a person.</em></h2>
+      <p>What would change if we designed for the experience behind the numbers, instead of just the numbers themselves?</p>
+      <div class="hero-actions"><a class="primary" href="https://github.com/jyothikumari21/The-Screen-Shapes-the-Search">Explore the code ↗</a><a class="quiet" href="#top">Back to beginning ↑</a></div>
+    </section>
+  </main>
+  <footer><p>© 2026 Jyothi Kumari · Human-centred data storytelling</p><p>Dataset: <a href="https://doi.org/10.24432/C5QK7X">UCI Clickstream Data for Online Shopping</a> (CC BY 4.0) · Collected in 2008</p><p><a href="https://github.com/jyothikumari21/The-Screen-Shapes-the-Search/blob/main/docs/METHODOLOGY.md">Methodology & limitations</a></p></footer>
+</body>
+</html>
